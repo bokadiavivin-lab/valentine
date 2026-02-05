@@ -121,9 +121,10 @@ for (let i = 0; i < 60; i++) {
 <div class="frame" id="frame1">
   <h1>Hey you</h1>
   <p>
-    This is the day I first asked you out and told you how I felt.
-    From that moment, you felt like home.
-    I’m grateful every day that you said yes.
+     This is the day I first asked you out and told you how I felt about you.
+    From that day on, you’ve felt like home, and being with you feels right,
+    complete, and safe. I’m really grateful that you said yes, because if I
+    hadn’t asked, I would have missed the most beautiful year of my life.
   </p>
   <button class="yes" onclick="next(2)">Next</button>
 </div>
@@ -161,7 +162,7 @@ for (let i = 0; i < 60; i++) {
 
 <div class="frame" id="frame7">
   <h1>See you soon 🤍</h1>
-  <p>I can’t wait.</p>
+  <p>I love you so so much.Can't wait anymore</p>
   <button class="yes" onclick="exitSite()">Exit</button>
 </div>
 
@@ -192,8 +193,27 @@ function choose(type){
     const b=document.createElement("button");
     b.className="option";
     b.innerText=x;
-    b.onclick=()=>{ venue=x; document.getElementById("summary").innerHTML=
-      `${dateType} at <strong>${venue}</strong><br>Time: ${time}`; next(6); };
+   b.onclick = () => {
+  venue = x;
+
+  // Show the summary on the page
+  document.getElementById("summary").innerHTML =
+    `${dateType} at <strong>${venue}</strong><br>Time: ${time}`;
+
+  // Prepare WhatsApp message
+  const message = encodeURIComponent(
+    `Valentine Date 💖\n${dateType} at ${venue}\nTime: ${time}`
+  );
+
+  // Replace with your number (country code + number, no +)
+  const whatsappURL = `https://wa.me/916380162991?text=${message}`;
+
+  // Open WhatsApp to send the message to you
+  window.open(whatsappURL, "_blank");
+
+  // Go to next frame
+  next(6);
+};
     v.appendChild(b);
   });
   next(5);
